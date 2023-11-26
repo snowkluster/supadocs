@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
-import Quill from "quill";
-import "quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import styled from "@emotion/styled"
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
 
 
 const Component = styled.div`
