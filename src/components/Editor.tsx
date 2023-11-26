@@ -2,6 +2,13 @@ import { Box } from "@mui/material";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useEffect } from "react";
+import styled from "@emotion/styled"
+
+
+const Component = styled.div`
+    background: #F5F5F5;
+
+`
 
 export default function Editor() {
   useEffect(() => {
@@ -32,8 +39,8 @@ export default function Editor() {
     });
   }, []);
   return (
-    <Box>
-      <Box id="container"></Box>
-    </Box>
+    <Component>
+      <Box id="container" className='container'></Box>
+    </Component>
   );
 }
