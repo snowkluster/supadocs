@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material";
+import Editor from "./components/Editor";
 
 export default function App() {
   return (
     <>
-      <Typography variant="h2">supadocs</Typography>
+      <Editor />
     </>
   )
 }
