@@ -5,6 +5,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { Socket, io } from "socket.io-client";
 import Delta from "quill-delta";
+import {useParams} from "react-router-dom"
 
 const Component = styled.div`
   background: #f5f5f5;
@@ -13,6 +14,7 @@ const Component = styled.div`
 export default function Editor() {
   const [socket, setSocket] = useState<Socket>();
   const [quill, setQuill] = useState<Quill>();
+  const {id} = useParams();
 
   useEffect(() => {
     const toolbarOptions = [
@@ -40,6 +42,8 @@ export default function Editor() {
       },
       theme: "snow",
     });
+    quillServer.disable();
+    quillServer.setText('Loading the document...')
     setQuill(quillServer);
   }, []);
   useEffect(() => {
@@ -83,6 +87,12 @@ export default function Editor() {
       socket && socket.off("receive-changes", handleChange);
     };
   }, [quill, socket]);
+
+  useEffect(() => {
+    if ((socket as Socket) === null || (quill as Quill) === null) return;
+    socket && socket.emit('get-document',id);
+    
+  },[quill,socket,id])
 
   return (
     <Component>
